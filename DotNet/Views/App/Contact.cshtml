@@ -1,0 +1,37 @@
+﻿@model DotNet.ViewModels.ContactViewModel
+@{
+    ViewBag.Title = "Contact Us";
+}
+
+@section scripts{ 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h3>Get In Touch</h3>
+
+<form method="post">
+    @*asp-validation-summary, has multiple values. Errors can be on the entire form object or individual models*@
+    @*ModelOnly is set here meaning this is only going to show errors that aren't being shown on individual forms
+        this is useful for errors that may be about the entire form eg you're using validation for a postcode which matches the country, area etc  *@
+    @*the summary part will show the list of errors that aren't about the individual fields*@
+    <span asp-validation-summary="ModelOnly"></span>
+
+    @*the asp-for is referring to the names of properties related to ContactViewModel class*@
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Email"></label>
+    <input type="email" asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Message"></label>
+    <textarea cols="40" rows="4" asp-for="Message"></textarea>
+    <span asp-validation-for="Message"></span>
+
+    <div>
+        <input type="submit" name="name" value="Send Message" />
+    </div>
+    
+</form>

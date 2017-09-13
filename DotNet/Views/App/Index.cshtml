@@ -1,0 +1,24 @@
+﻿@*generic html is added for the beginning content of this razor page
+Logic can be involved
+razor supports a number of csharp constructs like the following*@
+
+@{ 
+    //this is a property bag of data that can be sent and retrieved in these views
+    //changes the title element to "Home Page" after adding @ViewBag.Title
+    ViewBag.Title = "Home Page";
+}
+<h3>The World</h3>
+<p>This website will be fun soon!</p>
+<form action="/" method="post">
+    <div>
+        <label>Date</label>
+        <input type="text" name="name" value="" />
+    </div>
+    <div>
+        <label>Location</label>
+        <input type="text" name="name" value="" />
+    </div>
+    <div>
+        <input type="submit" name="name" value="Add" />
+    </div>
+</form>

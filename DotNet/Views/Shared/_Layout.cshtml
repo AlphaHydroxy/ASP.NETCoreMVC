@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*allows us to inject property names or method return values directly into the markup*@
+    <title>The World - @ViewBag.Title</title>
+    <meta charset="utf-8" />
+    <link href="~/css/index.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="sidebar">
+        <img src="~/img/rickandmorty.jpg" alt="userimage" class="userimg" />
+        <span id="userName">Jia Wong</span>
+        <ul class="menu">
+            <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
+            <li><a asp-controller="App" asp-action="About">About</a></li>
+            <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
+        </ul>
+    </div>
+    <div id="wrapper">
+        <div id="main">
+            <div>
+                <button id="sidebarToggle">Toggle Menu</button>
+            </div>
+          @RenderBody()
+        </div>
+        <div id="footer">
+            &copy;2017 The World Ltd.
+        </div>
+    </div>
+    <script type="text/javascript" src="~/lib/jquery/dist/jquery.min.js"></script>
+    @RenderSection("Scripts", false);
+    <script type="text/javascript" src="~/./js/index.js"></script>
+
+</body>
+</html>
