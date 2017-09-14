@@ -7,15 +7,52 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using DotNet.Services;
+using Microsoft.Extensions.Configuration;
 
 namespace DotNet
 {
     public class Startup
     {
+        private IHostingEnvironment _env;
+        private IConfigurationRoot _config;
+
+        public Startup(IHostingEnvironment env)
+        {
+            _env = env;
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(_env.ContentRootPath)
+                .AddJsonFile("config.json")
+
+                //allow configuration to be over ridden in different formats => project properties to add environment variables(debug)
+                .AddEnvironmentVariables();
+
+            //builder returns IConfigurationRoot - add IConfigurationRoot to AppController constructor
+            _config = builder.Build();
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton(_config);
+
+            if (_env.IsEnvironment("Development"))
+            {
+                //AddTransient supplies an interface (IMailSerivce) that can be fulfilled by a certain class (DebugMailService)
+                services.AddScoped<IMailService, DebugMailService>(); ;
+                //Transient creates an instance of DebugMailService as soon as it needs it and can keep it cached
+                //AddScoped creates an instance of DebugMailService for each set of requests, can be reused but only within the scope of a single request
+                //AddSingleton creates one instance on first request and same instance is used throughout
+            }
+            else
+            {
+                //Implement real Mail Service
+            }
+
+
+
             //aspdotnetcore requires the use of dependecy injection
             //this ConfigureServices is responsible for the setup of the service container
             //the container holds all the different services to the different parts that the application requires

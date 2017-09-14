@@ -12,6 +12,8 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
+        "Key": "Value",
+        "MailSettings__ToAddress": "hypoallergenic123@gmail.com",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
