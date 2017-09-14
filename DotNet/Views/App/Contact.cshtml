@@ -17,6 +17,12 @@
     @*the summary part will show the list of errors that aren't about the individual fields*@
     <span asp-validation-summary="ModelOnly"></span>
 
+    @if (ViewBag.UserMessage != null)
+    {
+        <div>@ViewBag.UserMessage</div>
+
+    }
+
     @*the asp-for is referring to the names of properties related to ContactViewModel class*@
     <label asp-for="Name"></label>
     <input asp-for="Name" />

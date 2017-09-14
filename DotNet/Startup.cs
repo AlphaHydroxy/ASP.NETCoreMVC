@@ -40,7 +40,7 @@ namespace DotNet
 
             if (_env.IsEnvironment("Development"))
             {
-                //AddTransient supplies an interface (IMailSerivce) that can be fulfilled by a certain class (DebugMailService)
+                //AddTransient supplies an interface (IMailService) that can be fulfilled by a certain class (DebugMailService)
                 services.AddScoped<IMailService, DebugMailService>(); ;
                 //Transient creates an instance of DebugMailService as soon as it needs it and can keep it cached
                 //AddScoped creates an instance of DebugMailService for each set of requests, can be reused but only within the scope of a single request
