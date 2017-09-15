@@ -7,37 +7,49 @@
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
 }
+<div class="row">
+    <div class="col-md-6 col-md-offset">
+        <h3>Get In Touch</h3>
 
-<h3>Get In Touch</h3>
+        <form method="post">
+            @*asp-validation-summary, has multiple values. Errors can be on the entire form object or individual models*@
+            @*ModelOnly is set here meaning this is only going to show errors that aren't being shown on individual forms
+                this is useful for errors that may be about the entire form eg you're using validation for a postcode which matches the country, area etc  *@
+            @*the summary part will show the list of errors that aren't about the individual fields*@
+            <span asp-validation-summary="ModelOnly"></span>
 
-<form method="post">
-    @*asp-validation-summary, has multiple values. Errors can be on the entire form object or individual models*@
-    @*ModelOnly is set here meaning this is only going to show errors that aren't being shown on individual forms
-        this is useful for errors that may be about the entire form eg you're using validation for a postcode which matches the country, area etc  *@
-    @*the summary part will show the list of errors that aren't about the individual fields*@
-    <span asp-validation-summary="ModelOnly"></span>
+            @if (ViewBag.UserMessage != null)
+            {
+                <div>@ViewBag.UserMessage</div>
 
-    @if (ViewBag.UserMessage != null)
-    {
-        <div>@ViewBag.UserMessage</div>
+            }
 
-    }
+            @*the asp-for is referring to the names of properties related to ContactViewModel class*@
+            @*<div asp-validation-summary="ValidationSummary.ModelOnly"></div>*@
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-muted"></span>
+            </div>
 
-    @*the asp-for is referring to the names of properties related to ContactViewModel class*@
-    <label asp-for="Name"></label>
-    <input asp-for="Name" />
-    <span asp-validation-for="Name"></span>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input type="email" asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-muted"></span>
+            </div>
+            
 
-    <label asp-for="Email"></label>
-    <input type="email" asp-for="Email" />
-    <span asp-validation-for="Email"></span>
+            <div class="form-group">
+                <label asp-for="Message"></label>
+                <textarea cols="40" rows="4" asp-for="Message" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-muted"></span>
+            </div>
 
-    <label asp-for="Message"></label>
-    <textarea cols="40" rows="4" asp-for="Message"></textarea>
-    <span asp-validation-for="Message"></span>
+            <div class="form-group">
+                <a asp-controller="App" asp-action="Index" class="btn btn-default">Cancel</a>
+                <input type="submit" name="name" value="Send Message" class="btn btn-success"/>
+            </div>
 
-    <div>
-        <input type="submit" name="name" value="Send Message" />
+        </form>
     </div>
-    
-</form>
+</div>
