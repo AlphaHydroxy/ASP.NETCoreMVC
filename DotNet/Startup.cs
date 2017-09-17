@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using DotNet.Services;
 using Microsoft.Extensions.Configuration;
+using DotNet.Models;
 
 namespace DotNet
 {
@@ -42,7 +43,7 @@ namespace DotNet
             {
                 //AddTransient supplies an interface (IMailService) that can be fulfilled by a certain class (DebugMailService)
                 services.AddScoped<IMailService, DebugMailService>(); ;
-                //Transient creates an instance of DebugMailService as soon as it needs it and can keep it cached
+                //AddTransient creates an instance of DebugMailService as soon as it needs it and can keep it cached
                 //AddScoped creates an instance of DebugMailService for each set of requests, can be reused but only within the scope of a single request
                 //AddSingleton creates one instance on first request and same instance is used throughout
             }
@@ -51,7 +52,13 @@ namespace DotNet
                 //Implement real Mail Service
             }
 
+            services.AddDbContext<WorldContext>();
 
+            services.AddScoped<IWorldRepository, WorldRepository>();
+
+            services.AddTransient<WorldContextSeedData>();
+
+            services.AddLogging();
 
             //aspdotnetcore requires the use of dependecy injection
             //this ConfigureServices is responsible for the setup of the service container
@@ -62,11 +69,16 @@ namespace DotNet
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, WorldContextSeedData seeder, ILoggerFactory loggerFactory)
         {
             if (env.IsEnvironment("Development"))
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddDebug(LogLevel.Information);
+            }
+            else
+            {
+                loggerFactory.AddDebug(LogLevel.Error);
             }
             
 
@@ -90,7 +102,8 @@ namespace DotNet
                     defaults: new { controller = "App", action = "Index" }
                     );
             });
-            
+            //Configure is synchronous, Wait can be used to make seeder async
+            seeder.EnsureSeedData().Wait();
         }
     }
 }

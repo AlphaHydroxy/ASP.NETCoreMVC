@@ -1,4 +1,5 @@
-﻿using DotNet.Services;
+﻿using DotNet.Models;
+using DotNet.Services;
 using DotNet.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -14,16 +15,20 @@ namespace DotNet.Controllers.Web
     {
         private IMailService _mailService;
         private IConfigurationRoot _config;
+        private IWorldRepository _repository;
 
-        public AppController(IMailService mailService, IConfigurationRoot config)
+        public AppController(IMailService mailService, IConfigurationRoot config, IWorldRepository repository)
         {
             _mailService = mailService;
             _config = config;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            //fetches a list of all the trips
+            var data = _repository.GetAllTrips(); //query
+            return View(data);
         }
 
         public IActionResult Contact()

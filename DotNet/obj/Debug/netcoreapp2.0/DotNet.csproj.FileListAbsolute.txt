@@ -1,0 +1,11 @@
+C:\Users\jpw_4\Desktop\DotNet\DotNet\bin\Debug\netcoreapp2.0\DotNet.deps.json
+C:\Users\jpw_4\Desktop\DotNet\DotNet\bin\Debug\netcoreapp2.0\DotNet.runtimeconfig.json
+C:\Users\jpw_4\Desktop\DotNet\DotNet\bin\Debug\netcoreapp2.0\DotNet.runtimeconfig.dev.json
+C:\Users\jpw_4\Desktop\DotNet\DotNet\bin\Debug\netcoreapp2.0\DotNet.dll
+C:\Users\jpw_4\Desktop\DotNet\DotNet\bin\Debug\netcoreapp2.0\DotNet.pdb
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.csprojResolveAssemblyReference.cache
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.csproj.CoreCompileInputs.cache
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.AssemblyInfoInputs.cache
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.AssemblyInfo.cs
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.dll
+C:\Users\jpw_4\Desktop\DotNet\DotNet\obj\Debug\netcoreapp2.0\DotNet.pdb

@@ -2,6 +2,7 @@
 Logic can be involved
 razor supports a number of csharp constructs like the following*@
 
+@model IEnumerable<DotNet.Models.Trip>
 @{ 
     //this is a property bag of data that can be sent and retrieved in these views
     //changes the title element to "Home Page" after adding @ViewBag.Title
@@ -28,6 +29,14 @@ razor supports a number of csharp constructs like the following*@
     </div>
     <div class="col-md-6">
         <h1>The Map</h1>
+
+        <ul>
+            @foreach ( var item in Model )
+            {
+            <li>@item.Name : @item.DateCreated.ToString("d")</li>
+            }
+        </ul>
+
     </div>
 
 </div>

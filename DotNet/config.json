@@ -1,5 +1,9 @@
 {
   "MailSettings": {
     "ToAddress": "jpw_4@msn.com"
+  },
+  "ConnectionStrings": {
+    "WorldContextConnection": "Data Source=(localdb)\\ProjectsV13;Database=TheWorldDb;Trusted_Connection=true; Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
   }
+
 }
